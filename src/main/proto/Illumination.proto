@@ -1,0 +1,29 @@
+syntax = "proto3";
+option java_package = "blr.demo.grpctalk";
+
+service ManageIllumination {
+
+  rpc UpdateLantern(SwitchLantern) returns (Report) {}
+  rpc MonitorLantern(SwitchLantern) returns (stream Report) {}
+  rpc ManageLantern(stream SwitchLantern) returns (Report) {}
+  rpc HandleLantern(stream SwitchLantern) returns (stream Report) {}
+
+}
+
+message SwitchLantern {
+  int32 id = 1;
+  Mode mode = 2;
+  repeated string colour = 3;
+  int32 frequency = 4;
+}
+
+message Report {
+  int32 id = 1;
+  int32 status = 2;
+}
+
+enum Mode {
+  BRIGHT = 0;
+  DARK = 1;
+  OFF = 3;
+}

@@ -1,0 +1,31 @@
+isAsync: false
+grpc:
+  server:
+    port: 50050
+    health-service-enabled: true
+#    security:
+#      enabled: true
+#      key-store: file: a.pem
+#      trust-store: file: b.pem
+#      certificate-chain:
+    enable-keep-alive: true
+    keep-alive-timeout: 100
+    permit-keep-alive-without-calls: true
+
+  client:
+    GLOBAL:
+      address: static://localhost:50050
+      negotiation-type: PLAINTEXT
+      default-load-balancing-policy: round_robin
+#      immediate-connect-timeout: 1s
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: metrics, info, health
+
+
