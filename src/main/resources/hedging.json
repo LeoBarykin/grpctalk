@@ -1,0 +1,26 @@
+{
+  "methodConfig": [
+    {
+      "name": [
+        {
+          "service": "blr.demo.grpctalk.ManageIllumination",
+          "method": "UpdateLantern"
+        }
+      ],
+
+      "hedgingPolicy": {
+        "maxAttempts": 3,
+        "hedgingDelay": "1s",
+        "nonFatalStatusCodes": [
+          "UNAVAILABLE",
+          "ABORTED"
+        ]
+      }
+    }
+  ],
+
+  "retryThrottling": {
+    "maxTokens": 10,
+    "tokenRatio": 0.1
+  }
+}
