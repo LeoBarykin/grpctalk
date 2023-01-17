@@ -23,7 +23,7 @@ message Report {
 }
 
 enum Mode {
-  BRIGHT = 0;
-  DARK = 1;
-  OFF = 3;
+  OFF = 0;
+  DIMMED = 1;
+  BRIGHT = 3;
 }

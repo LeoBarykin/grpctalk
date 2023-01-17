@@ -1,8 +1,7 @@
-isAsync: false
+isAsync: true
 grpc:
   server:
     port: 50050
-    health-service-enabled: true
 #    security:
 #      enabled: true
 #      key-store: file: a.pem
@@ -16,8 +15,6 @@ grpc:
     GLOBAL:
       address: static://localhost:50050
       negotiation-type: PLAINTEXT
-      default-load-balancing-policy: round_robin
-#      immediate-connect-timeout: 1s
 
 management:
   endpoint:

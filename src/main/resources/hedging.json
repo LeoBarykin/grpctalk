@@ -7,7 +7,6 @@
           "method": "UpdateLantern"
         }
       ],
-
       "hedgingPolicy": {
         "maxAttempts": 3,
         "hedgingDelay": "1s",

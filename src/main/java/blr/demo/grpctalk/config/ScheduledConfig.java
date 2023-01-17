@@ -24,7 +24,7 @@ public class ScheduledConfig {
     private boolean isAsync;
 
 
-    @Scheduled(fixedDelay = 20000)
+    @Scheduled(fixedDelay = 30000)
     public void runExample() {
         if (isAsync) {
             log.info("ASYNC EXAMPLE");

@@ -41,18 +41,15 @@ public class GrpcIlluminationServer extends ManageIlluminationGrpc.ManageIllumin
     public StreamObserver<Illumination.SwitchLantern> manageLantern(StreamObserver<Illumination.Report> responseObserver) {
         return new StreamObserver<>() {
             int counter = 0;
-
             @Override
             public void onNext(Illumination.SwitchLantern switchLantern) {
                 counter++;
                 log.info("Step {}, mode {}", switchLantern.getMode(), counter);
             }
-
             @Override
             public void onError(Throwable throwable) {
                 log.error(throwable.getLocalizedMessage());
             }
-
             @Override
             public void onCompleted() {
                 log.info("Whole operation completed");
@@ -69,7 +66,6 @@ public class GrpcIlluminationServer extends ManageIlluminationGrpc.ManageIllumin
     public StreamObserver<Illumination.SwitchLantern> handleLantern(StreamObserver<Illumination.Report> responseObserver) {
         return new StreamObserver<>() {
             int counter = 0;
-
             @SneakyThrows
             @Override
             public void onNext(Illumination.SwitchLantern switchLantern) {
@@ -82,12 +78,10 @@ public class GrpcIlluminationServer extends ManageIlluminationGrpc.ManageIllumin
                     Thread.sleep(ThreadLocalRandom.current().nextLong(3000));
                 }
             }
-
             @Override
             public void onError(Throwable throwable) {
                 log.error(throwable.getLocalizedMessage());
             }
-
             @Override
             public void onCompleted() {
                 log.info("Whole operation completed");
