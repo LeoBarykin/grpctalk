@@ -24,7 +24,7 @@ public class Configurer {
         return (channelBuilder, name) -> {
             if (channelBuilder instanceof NettyChannelBuilder) {
                 ((NettyChannelBuilder) channelBuilder)
-                        .defaultServiceConfig(getRetryingServiceConfig())
+                        //.defaultServiceConfig(getRetryingServiceConfig())
                         //.defaultServiceConfig(getHedgingServiceConfig())
                         .enableRetry()
                         .executor(Executors.newFixedThreadPool(100));
