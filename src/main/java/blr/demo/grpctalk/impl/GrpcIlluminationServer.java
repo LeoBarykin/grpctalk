@@ -6,9 +6,11 @@ import io.grpc.stub.StreamObserver;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.context.annotation.Profile;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+@Profile("server")
 @GrpcService
 @Slf4j
 public class GrpcIlluminationServer extends ManageIlluminationGrpc.ManageIlluminationImplBase {

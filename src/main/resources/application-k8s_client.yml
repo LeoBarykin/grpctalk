@@ -1,0 +1,13 @@
+isAsync: false
+spring:
+  profiles:
+    active: client
+
+grpc:
+  client:
+    GLOBAL:
+#      address: dns:///my-grpc.info
+      address: static://127.0.0.1:51554
+      negotiation-type: PLAINTEXT
+
+

@@ -18,16 +18,18 @@ public class GrpcIlluminationBlockingClient {
     private ManageIlluminationGrpc.ManageIlluminationBlockingStub blockingStub;
 
     public void doWork() {
+        for (int i = 0; i < 35; i++) {
 
-        Illumination.Report report =
-                blockingStub
-                        //.withDeadline(Deadline.after(10, TimeUnit.SECONDS))
-                        .updateLantern(Illumination.SwitchLantern.newBuilder().build());
-        log.info("Id of the lantern = {}", report.getId());
+            Illumination.Report report =
+                    blockingStub
+                            .withDeadline(Deadline.after(5, TimeUnit.SECONDS))
+                            .updateLantern(Illumination.SwitchLantern.newBuilder().build());
+            log.info("Id of the lantern = {}", report.getId());
 
-        Iterator<Illumination.Report> reportIterator =
-                blockingStub.monitorLantern(Illumination.SwitchLantern.newBuilder().build());
-        reportIterator.forEachRemaining(l -> log.info("Current status = {}", l.getStatus()));
+        }
+//        Iterator<Illumination.Report> reportIterator =
+//                blockingStub.monitorLantern(Illumination.SwitchLantern.newBuilder().build());
+//        reportIterator.forEachRemaining(l -> log.info("Current status = {}", l.getStatus()));
 
     }
 

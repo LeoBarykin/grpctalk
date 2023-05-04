@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>blr.demo</groupId>
 	<artifactId>grpctalk</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>grpctalk</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -25,7 +25,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 
 		<dependency>
 			<groupId>net.devh</groupId>
@@ -52,16 +51,38 @@
             <version>2.8.5</version>
         </dependency>
     </dependencies>
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<excludes>
+							<exclude>application-2in1.yml</exclude>
+							<exclude>application-k8s_client.yml</exclude>
+							<exclude>application-local_client.yml</exclude>
+							<exclude>application-localserver_50050.yml</exclude>
+							<exclude>application-localserver_50051.yml</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>/src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>../src/main/resources</directory>
-			</resource>
-		</resources>
+<!--		<resources>-->
+<!--			<resource>-->
+<!--				<directory>/src/main/resources</directory>-->
+<!--			</resource>-->
+<!--			<resource>-->
+<!--				<directory>../src/main/resources</directory>-->
+<!--			</resource>-->
+<!--		</resources>-->
 		<extensions>
 			<extension>
 				<groupId>kr.motd.maven</groupId>

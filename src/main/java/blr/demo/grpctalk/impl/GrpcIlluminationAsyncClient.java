@@ -48,7 +48,7 @@ public class GrpcIlluminationAsyncClient {
                             .setId(999)
                             .setMode(i % 2 == 0
                                     ? Mode.BRIGHT
-                                    : Mode.DARK)
+                                    : Mode.DIMMED)
                     .build());
             Thread.sleep(ThreadLocalRandom.current().nextLong(3000L));
         }

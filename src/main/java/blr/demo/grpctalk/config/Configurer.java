@@ -6,6 +6,7 @@ import io.grpc.*;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import net.devh.boot.grpc.client.channelfactory.GrpcChannelConfigurer;
 import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,10 +25,9 @@ public class Configurer {
         return (channelBuilder, name) -> {
             if (channelBuilder instanceof NettyChannelBuilder) {
                 ((NettyChannelBuilder) channelBuilder)
-                        .defaultServiceConfig(getRetryingServiceConfig())
-                        //.defaultServiceConfig(getHedgingServiceConfig())
-                        .enableRetry()
-                        .executor(Executors.newFixedThreadPool(100));
+                        //.defaultLoadBalancingPolicy("pick_first")
+                        .executor(Executors.newSingleThreadExecutor())
+                ;
             }
         };
     }
@@ -46,7 +46,7 @@ public class Configurer {
     private Map<String, ?> getRetryingServiceConfig() {
         return new Gson()
                 .fromJson(new JsonReader(new InputStreamReader(Objects.requireNonNull(
-                        this.getClass().getResourceAsStream("retrying.json")), UTF_8)), Map.class);
+                        this.getClass().getResourceAsStream("resources/retrying.json")), UTF_8)), Map.class);
     }
 
     private Map<String, ?> getHedgingServiceConfig() {
