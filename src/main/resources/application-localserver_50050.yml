@@ -1,12 +1,12 @@
 isAsync: false
+server:
+  port: 9092
 spring:
   profiles:
     active: server
-
 grpc:
   server:
     port: 50050
-
 
 
 

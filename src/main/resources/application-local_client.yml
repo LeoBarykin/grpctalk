@@ -1,0 +1,12 @@
+isAsync: false
+server:
+  port: 9091
+spring:
+  profiles:
+    active: client
+grpc:
+  client:
+    GLOBAL:
+      address: static://localhost:50050,localhost:50051
+      negotiation-type: PLAINTEXT
+
